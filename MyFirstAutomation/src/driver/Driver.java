@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class Driver {
 
 	public static WebDriver getDriver(String browserType) {
@@ -24,15 +26,15 @@ public class Driver {
 	}
 
 	private static ChromeDriver getChromeDriver() {
+		WebDriverManager.chromedriver().setup();
+//		System.setProperty("webdriver.chrome.driver", "/Users/abduvokhidismailov/Downloads/chromedriver");
+		return new ChromeDriver();
+	}
 
-		System.setProperty("webdriver.chrome.driver", "/Users/abduvokhidismailov/Downloads/chromedriver");
-		return  new ChromeDriver();
-		}
+	private static FirefoxDriver getFirefoxDriver() {
+		WebDriverManager.firefoxdriver().setup();
+//		System.setProperty("webdriver.gecko.driver", "/Users/abduvokhidismailov/Downloads/geckodriver");
+		return new FirefoxDriver();
+	}
 
-			private static FirefoxDriver getFirefoxDriver() {
-				System.setProperty("webdriver.gecko.driver", "/Users/abduvokhidismailov/Downloads/geckodriver");
-
-				return new FirefoxDriver();
-			}
-
-		}
+}
